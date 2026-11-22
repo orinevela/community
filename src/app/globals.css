@@ -1,26 +1,98 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --bg: #f6f4ef;
+  --surface: #ffffff;
+  --surface-2: #f0ede6;
+  --ink: #1c1b19;
+  --ink-2: #5b5852;
+  --line: #e4e0d7;
+  --brand: #0d7a5f;
+  --brand-ink: #ffffff;
+  --brand-soft: #e1f2ec;
+  --accent: #e0703a;
+  --accent-soft: #fbe9df;
+  --danger: #b42318;
+  --wa: #1f9d55;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --bg: #141413;
+    --surface: #1e1d1b;
+    --surface-2: #272623;
+    --ink: #f1efe9;
+    --ink-2: #a9a59c;
+    --line: #34322e;
+    --brand: #34b58e;
+    --brand-ink: #0b1f19;
+    --brand-soft: #173a30;
+    --accent: #f08a57;
+    --accent-soft: #3a261b;
+    --danger: #f97066;
+    --wa: #2fbf6c;
   }
 }
 
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-line: var(--line);
+  --color-brand: var(--brand);
+  --color-brand-ink: var(--brand-ink);
+  --color-brand-soft: var(--brand-soft);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-danger: var(--danger);
+  --color-wa: var(--wa);
+  --font-sans: var(--font-rubik), system-ui, "Segoe UI", Arial, sans-serif;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-tap-highlight-color: transparent;
+}
+
+@utility card {
+    @apply rounded-2xl border border-line bg-surface;
+}
+
+@utility btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-3 text-[15px] font-medium transition active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none;
+}
+
+@utility btn-primary {
+    @apply btn bg-brand text-brand-ink hover:brightness-110;
+}
+
+@utility btn-ghost {
+    @apply btn border border-line bg-surface text-ink hover:bg-surface-2;
+}
+
+@utility btn-wa {
+    @apply btn bg-wa text-white hover:brightness-110;
+}
+
+@utility input {
+    @apply w-full rounded-xl border border-line bg-surface px-3.5 py-3 text-[16px] text-ink outline-none placeholder:text-ink-2/70 focus:border-brand focus:ring-2 focus:ring-brand/20;
+}
+
+@utility label {
+    @apply mb-1.5 block text-sm font-medium text-ink;
+}
+
+@utility chip {
+    @apply inline-flex items-center gap-1 rounded-full border border-line bg-surface px-3 py-1.5 text-sm text-ink transition;
+}
+
+@utility chip-on {
+    @apply border-brand bg-brand-soft text-brand;
 }
